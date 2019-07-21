@@ -71,7 +71,7 @@ class ProductBundleTest extends TestCase
 
 	/**
 	 * @test price calculation of bundle with:
-	 *  - 1 bundle with:
+	 * 	- 1 bundle with:
 	 * 		- 1 product
 	 */
 	public function one_bundle()
@@ -86,7 +86,7 @@ class ProductBundleTest extends TestCase
 	/**
 	 * @test price calculation of bundle with:
 	 * 	- 2 products
-	 *  - 1 bundle with:
+	 * 	- 1 bundle with:
 	 * 		- 1 bundle with:
 	 * 			- 1 product
 	 */
@@ -103,7 +103,7 @@ class ProductBundleTest extends TestCase
 	/**
 	 * @test price calculation of bundle with:
 	 * 	- 1 product
-	 *  - 1 bundle with:
+	 * 	- 1 bundle with:
 	 * 		- 2 products
 	 */
 	public function product_and_bundle_of_two_products()
@@ -120,9 +120,9 @@ class ProductBundleTest extends TestCase
 	/**
 	 * @test price calculation of bundle with:
 	 * 	- 2 products
-	 *  - 1 bundle with:
+	 * 	- 1 bundle with:
 	 * 		- 2 products
-	 *  - 1 bundle with:
+	 * 	- 1 bundle with:
 	 * 		- 1 bundle with:
 	 * 			- 2 products
 	 * 		- 1 product
@@ -142,7 +142,7 @@ class ProductBundleTest extends TestCase
 	/**
 	 * @test price calculation of bundle with:
 	 * 	- 1 product
-	 *  - 1 bundle with:
+	 * 	- 1 bundle with:
 	 * 		- 2 products
 	 * 		- 1 bundle with:
 	 * 			- 2 products
