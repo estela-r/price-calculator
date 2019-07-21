@@ -17,7 +17,8 @@ $total = $calculator->getTotal();
 
 ## Installation
 ```
-git clone
+git clone git@github.com:estela-reynolds/price-calculator.git
+cd price-calculator
 composer install
 ```
 
