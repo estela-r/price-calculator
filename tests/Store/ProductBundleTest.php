@@ -145,7 +145,9 @@ class ProductBundleTest extends TestCase
 	 * 	- 1 bundle with:
 	 * 		- 2 products
 	 * 		- 1 bundle with:
-	 * 			- 2 products
+	 * 			- 1 bundle with:
+	 * 				- 2 products
+	 * 			- 1 products
 	 * 		- 1 bundle with:
 	 * 			- 2 products
 	 */
