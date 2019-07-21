@@ -8,10 +8,10 @@
 $keyboard = new Product(‘Keyboard’, 100.45); 
 $mouse = new Product(‘Mouse’, 25.68); 
 $headphones = new Product(‘Headphones’, 25.68); 
-$firstBundle = new ProductsBundle([$keyboard, $mouse]); 
-$secondBundle = new ProductsBundle([$firstBundle, $headphones]); 
+$firstBundle = new ProductsBundle($keyboard, $mouse); 
+$secondBundle = new ProductsBundle($firstBundle, $headphones); 
 
-$calculator = new TotalPriceCalculator([$keyboard, $mouse, $secondBundle, $firstBundle]); 
+$calculator = new TotalPriceCalculator($keyboard, $mouse, $secondBundle, $firstBundle); 
 $total = $calculator->getTotal();
 ```
 
