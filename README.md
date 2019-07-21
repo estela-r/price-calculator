@@ -24,5 +24,10 @@ composer install
 
 ## Run unit tests
 ```
-vendor\bin\phpunit tests
+vendor/bin/phpunit tests
+```
+
+## Run client code
+```
+php -f index.php
 ```
