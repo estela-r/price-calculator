@@ -3,7 +3,6 @@
 namespace Store;
 
 use Store\SellableInterface;
-use InvalidArgumentException;
 
 class ProductBundle implements SellableInterface
 {
@@ -14,21 +13,8 @@ class ProductBundle implements SellableInterface
 	 */
 	private $sellable;
 
-	/**
-	 * @param array $sellable Array of objects that implement SellableInterface.
-	 * 
-	 * @throws InvalidArgumentException
-	 */
-	public function __construct(array $sellable)
+	public function __construct(SellableInterface ...$sellable)
 	{
-		foreach ($sellable as $item) {
-
-			if (!($item instanceof SellableInterface)) {
-
-				throw new InvalidArgumentException('Unsupported item type');
-			}
-		}
-
 		$this->sellable = $sellable;
 	}
 

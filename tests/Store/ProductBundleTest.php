@@ -16,7 +16,7 @@ class ProductBundleTest extends TestCase
 	 */
 	public function empty_bundle()
 	{
-		$bundle = new ProductBundle([]);
+		$bundle = new ProductBundle();
 		$this->assertEquals(0, $bundle->getPrice());
 	}
 
@@ -26,9 +26,9 @@ class ProductBundleTest extends TestCase
 	 */
 	public function invalid_arg_exception()
 	{
-		$this->expectException(\InvalidArgumentException::class);
+		$this->expectException(\TypeError::class);
 
-		$bundle = new ProductBundle(['asdf']);
+		$bundle = new ProductBundle('asdf');
 		$bundle->getPrice();
 	}
 
@@ -40,7 +40,7 @@ class ProductBundleTest extends TestCase
 	{
 		$keyboard = new Product('Keyboard', 10);
 
-		$bundle = new ProductBundle([$keyboard]);
+		$bundle = new ProductBundle($keyboard);
 		$this->assertEquals(10, $bundle->getPrice());
 	}
 
@@ -53,7 +53,7 @@ class ProductBundleTest extends TestCase
 		$mouse = new Product('Mouse', 5);
 		$keyboard = new Product('Keyboard', 10);
 
-		$bundle = new ProductBundle([$mouse, $keyboard]);
+		$bundle = new ProductBundle($mouse, $keyboard);
 		$this->assertEquals(15, $bundle->getPrice());
 	}
 
@@ -65,7 +65,7 @@ class ProductBundleTest extends TestCase
 		$mouse = new Product('Mouse', 5.20);
 		$keyboard = new Product('Keyboard', 10.21);
 
-		$bundle = new ProductBundle([$mouse, $keyboard]);
+		$bundle = new ProductBundle($mouse, $keyboard);
 		$this->assertEquals(15.41, $bundle->getPrice());
 	}
 
@@ -77,9 +77,9 @@ class ProductBundleTest extends TestCase
 	public function one_bundle()
 	{
 		$keyboard = new Product('Keyboard', 10);
-		$firstBundle = new ProductBundle([$keyboard]);
+		$firstBundle = new ProductBundle($keyboard);
 
-		$secondBundle = new ProductBundle([$firstBundle]);
+		$secondBundle = new ProductBundle($firstBundle);
 		$this->assertEquals(10, $secondBundle->getPrice());
 	}
 
@@ -94,9 +94,9 @@ class ProductBundleTest extends TestCase
 	{
 		$mouse = new Product('Mouse', 5);
 		$keyboard = new Product('Keyboard', 10);
-		$firstBundle = new ProductBundle([$keyboard]);
+		$firstBundle = new ProductBundle($keyboard);
 
-		$secondBundle = new ProductBundle([$firstBundle, $mouse]);
+		$secondBundle = new ProductBundle($firstBundle, $mouse);
 		$this->assertEquals(15, $secondBundle->getPrice());
 	}
 
@@ -111,9 +111,9 @@ class ProductBundleTest extends TestCase
 		$mouse = new Product('Mouse', 5);
 		$keyboard = new Product('Keyboard', 10);
 		$headphones = new Product('Headphones', 15);
-		$firstBundle = new ProductBundle([$mouse, $keyboard]);
+		$firstBundle = new ProductBundle($mouse, $keyboard);
 
-		$secondBundle = new ProductBundle([$firstBundle, $headphones]);
+		$secondBundle = new ProductBundle($firstBundle, $headphones);
 		$this->assertEquals(30, $secondBundle->getPrice());
 	}
 
@@ -132,10 +132,10 @@ class ProductBundleTest extends TestCase
 		$keyboard = new Product('Keyboard', 10);
 		$mouse = new Product('Mouse', 5);
 		$headphones = new Product('Headphones', 15);
-		$firstBundle = new ProductBundle([$mouse, $keyboard]);
-		$secondBundle = new ProductBundle([$firstBundle, $headphones]);
+		$firstBundle = new ProductBundle($mouse, $keyboard);
+		$secondBundle = new ProductBundle($firstBundle, $headphones);
 
-		$thirdBundle = new ProductBundle([$keyboard, $mouse, $firstBundle, $secondBundle]);
+		$thirdBundle = new ProductBundle($keyboard, $mouse, $firstBundle, $secondBundle);
 		$this->assertEquals(60, $thirdBundle->getPrice());
 	}
 
@@ -154,11 +154,11 @@ class ProductBundleTest extends TestCase
 		$keyboard = new Product('Keyboard', 10);
 		$mouse = new Product('Mouse', 5);
 		$headphones = new Product('Headphones', 15);
-		$firstBundle = new ProductBundle([$mouse, $keyboard]);
-		$secondBundle = new ProductBundle([$firstBundle, $headphones]);
-		$thirdBundle = new ProductBundle([$keyboard, $mouse, $firstBundle, $secondBundle]);
+		$firstBundle = new ProductBundle($mouse, $keyboard);
+		$secondBundle = new ProductBundle($firstBundle, $headphones);
+		$thirdBundle = new ProductBundle($keyboard, $mouse, $firstBundle, $secondBundle);
 
-		$fourthBundle = new ProductBundle([$thirdBundle, $mouse]);
+		$fourthBundle = new ProductBundle($thirdBundle, $mouse);
 		$this->assertEquals(65, $fourthBundle->getPrice());
 	}
 

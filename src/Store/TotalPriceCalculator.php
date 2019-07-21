@@ -3,7 +3,6 @@
 namespace Store;
 
 use Store\SellableInterface;
-use DomainException;
 
 class TotalPriceCalculator
 {
@@ -15,17 +14,10 @@ class TotalPriceCalculator
 	 */
 	private $items;
 
-	public function __construct(array $sellable)
+	public function __construct(SellableInterface ...$items)
 	{
-		foreach ($sellable as $item) {
 
-			if (!($item instanceof SellableInterface)) {
-
-				throw new DomainException("Item is not valid for price calculation");
-			}
-
-			$this->items[] = $item;
-		}
+		$this->items = $items;
 	}
 
 	/**
