@@ -4,34 +4,57 @@ namespace Tests\Store;
 
 use PHPUnit\Framework\TestCase;
 use Store\TotalPriceCalculator;
-use Store\ProductBundle;
-use Store\Product;
+use Store\SellableInterface;
 
 class TotalPriceCalculatorTest extends TestCase
 {
 
 	/**
-	 * @test total price calculation with 1 product
+	 * @test that type error is raised
+	 * when wrong parameter type is passed to constructor.
+	 */
+	public function error_on_wrong_parameter_type()
+	{
+		$this->expectException(\TypeError::class);
+		new TotalPriceCalculator(...[123]);
+	}
+
+	/**
+	 * @test that total price is 0 when no items are passed to the calculator.
+	 */
+	public function no_product()
+	{
+		$calculator = new TotalPriceCalculator(...[]);
+		$this->assertEquals(0, $calculator->getTotal());
+	}
+
+	/**
+	 * @test total price calculation with 1 item.
 	 */
 	public function one_product()
 	{
-		$calculator = new TotalPriceCalculator(new Product('Keyboard', 10.23));
+		$product = $this->createMock(SellableInterface::class);
+		$product->method('getPrice')
+				->willReturn(10.23);
+		$calculator = new TotalPriceCalculator($product);
 		$this->assertEquals(10.23, $calculator->getTotal());
 	}
 
 	/**
-	 * @test total price calculation with 2 products and 2 bundles.
+	 * @test total price calculation with multiple items.
 	 */
-	public function two_products_two_bundles()
+	public function one_product_one_bundle()
 	{
-		$keyboard = new Product('Keyboard', 100.45);
-		$mouse = new Product('Mouse', 25.68);
-		$headphones = new Product('Headphones', 25.68);
-		$firstBundle = new ProductBundle($keyboard, $mouse);
-		$secondBundle = new ProductBundle($firstBundle, $headphones);
+		$keyboard = $this->createMock(SellableInterface::class);
+		$keyboard->method('getPrice')
+				->willReturn(100.45);
 
-		$calculator = new TotalPriceCalculator($keyboard, $mouse, $secondBundle, $firstBundle);
-		$this->assertEquals(404.07, $calculator->getTotal());
+		$firstBundle = $this->createMock(SellableInterface::class);
+		$firstBundle->method('getPrice')
+				->willReturn(200.45);
+
+		$calculator = new TotalPriceCalculator($keyboard, $firstBundle);
+		$this->assertEquals(300.90, $calculator->getTotal());
 	}
 
 }
