@@ -4,7 +4,7 @@
 
 ## Пример за използване: 
 
-```
+```php
 $keyboard = new Product('Keyboard', 100.45);
 $mouse = new Product('Mouse', 25.68);
 $headphones = new Product('Headphones', 25.68);
@@ -16,18 +16,18 @@ $total = $calculator->getTotal();
 ```
 
 ## Installation
-```
+```shell
 git clone git@github.com:estela-r/price-calculator.git
 cd price-calculator
 composer install
 ```
 
 ## Run unit tests
-```
+```shell
 vendor/bin/phpunit tests
 ```
 
 ## Run client code
-```
+```shell
 php -f index.php
 ```
